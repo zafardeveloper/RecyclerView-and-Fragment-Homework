@@ -1,4 +1,4 @@
-package com.example.recycler_fragment_homework.chats
+package com.example.recycler_fragment_homework.profile
 
 import android.os.Bundle
 import android.text.Editable
@@ -8,30 +8,31 @@ import android.widget.EditText
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recycler_fragment_homework.R
-import com.example.recycler_fragment_homework.chats.adapter.ChatsAdapter
-import com.example.recycler_fragment_homework.chats.model.ChatModel
+import com.example.recycler_fragment_homework.profile.adapter.ProfilesAdapter
+import com.example.recycler_fragment_homework.profile.model.ProfileModel
 
 
-class ChatFragment : Fragment(R.layout.fragment_chat) {
+class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private val recyclerView by lazy { requireView()
-        .findViewById<RecyclerView>(R.id.recyclerView) }
-    private val adapter = ChatsAdapter()
+        .findViewById<RecyclerView>(R.id.recyclerViewProfile) }
+    private val adapter = ProfilesAdapter()
 
-    private val data = listOf(
-        ChatModel("Bryan"),
-        ChatModel("Kari"),
-        ChatModel("Diana"),
-        ChatModel("Ben"),
-        ChatModel("Naomi"),
-        ChatModel("Alicia"),
+
+    val dataProfile = listOf(
+        ProfileModel("Bryan", R.drawable.bryan),
+        ProfileModel("Kari", R.drawable.kari),
+        ProfileModel("Diana", R.drawable.diana),
+        ProfileModel("Ben", R.drawable.ben),
+        ProfileModel("Naomi", R.drawable.naomi),
+        ProfileModel("Alicia", R.drawable.alicia),
     )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView.adapter = adapter
-        adapter.updateItems(data)
-        view.findViewById<EditText>(R.id.searchEditText).apply {
+        adapter.updateItems(dataProfile)
+        view.findViewById<EditText>(R.id.searchEditText)?.apply {
             background = null
             doAfterTextChanged {
                 filterChats(it)
@@ -43,11 +44,12 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
         query?.let {
             if (it.isNotEmpty()) {
                 val searchQuery = query.toString().lowercase()
-                adapter.updateItems(data.filter {
+                adapter.updateItems(dataProfile.filter {
                     it.names.lowercase().contains(searchQuery)
                 })
-            } else adapter.updateItems(data)
+            } else adapter.updateItems(dataProfile)
         }
     }
+
 
 }

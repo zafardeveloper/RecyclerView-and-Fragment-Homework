@@ -9,8 +9,9 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/chats_fragment_container"
-        android:name="com.example.recycler_fragment_homework.chats.ChatFragment"
+        android:name="com.example.recycler_fragment_homework.chat.ChatFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
 
 </LinearLayout>
