@@ -16,21 +16,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-//        val search = binding.searchEditText
-//
-//        search.setOnClickListener {
-//            replaceFragment(ProfileFragment())
-//        }
-
     }
 
-    private fun replaceFragment(fragment: Fragment) {
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.chats_fragment_container, fragment)
-        fragmentTransaction.commit()
-    }
+//    private fun replaceFragment(fragment: Fragment) {
+//        val fragmentManager = supportFragmentManager
+//        val fragmentTransaction = fragmentManager.beginTransaction()
+//        fragmentTransaction.replace(R.id.chats_fragment_container, fragment)
+//        fragmentTransaction.commit()
+//    }
 
 
 }
