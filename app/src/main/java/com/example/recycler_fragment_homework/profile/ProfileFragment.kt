@@ -19,7 +19,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private val adapter = ProfilesAdapter()
 
 
-    val dataProfile = listOf(
+    private val dataProfile = listOf(
         ProfileModel("Bryan", R.drawable.bryan),
         ProfileModel("Kari", R.drawable.kari),
         ProfileModel("Diana", R.drawable.diana),

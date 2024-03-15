@@ -1,28 +1,25 @@
 package com.example.recycler_fragment_homework.chat
 
+import android.app.AlertDialog
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recycler_fragment_homework.R
 import com.example.recycler_fragment_homework.chat.adapter.ChatsAdapter
 import com.example.recycler_fragment_homework.chat.model.ChatModel
 import com.example.recycler_fragment_homework.profile.ProfileFragment
-import androidx.fragment.app.FragmentActivity
 
 
-class ChatFragment :Fragment(R.layout.fragment_chat) {
+class ChatFragment :Fragment(R.layout.fragment_chat), ChatsAdapter.Listener {
 
     private val recyclerView by lazy { requireView()
         .findViewById<RecyclerView>(R.id.recyclerViewChat)}
-    private val adapter = ChatsAdapter()
+    private val adapter = ChatsAdapter(this)
 
-    private val data = listOf(
+    private val data = mutableListOf(
         ChatModel("Bryan","What do you think?" , R.drawable.bryan),
         ChatModel("Kari","Looks great!" , R.drawable.kari),
         ChatModel("Diana","Lunch on Monday?" , R.drawable.diana),
@@ -47,5 +44,28 @@ class ChatFragment :Fragment(R.layout.fragment_chat) {
                 .commit()
         }
     }
+
+    override fun onClick(item: ChatModel) {
+        val alertDialog = AlertDialog.Builder(context)
+            .setTitle("Delete contact")
+            .setMessage("Are you sure you want to delete?")
+            .setIcon(R.drawable.delete_icon)
+            .setPositiveButton(android.R.string.yes) { dialog, which ->
+                val position = data.indexOf(item)
+                deleteItem(position)
+                adapter.updateItems(data)
+            }
+            .setNegativeButton(android.R.string.no) { dialog, which ->
+                dialog.dismiss()
+            }
+            .create()
+        alertDialog.show()
+    }
+
+    fun deleteItem(position: Int) {
+        data.removeAt(position)
+        adapter.notifyItemRemoved(position)
+    }
+
 }
 

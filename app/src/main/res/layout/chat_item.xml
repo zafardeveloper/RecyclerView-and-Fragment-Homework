@@ -18,7 +18,8 @@
             android:id="@+id/imageViewChat"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/avatar" />
+            android:src="@drawable/avatar"
+            android:contentDescription="avatar"/>
 
     </androidx.cardview.widget.CardView>
 
@@ -37,7 +38,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_gravity="start"
-            tools:text="Title" />
+            tools:text="Title"/>
 
         <TextView
             android:id="@+id/lastMessageChat"

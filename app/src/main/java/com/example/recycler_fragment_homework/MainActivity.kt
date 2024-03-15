@@ -2,14 +2,12 @@ package com.example.recycler_fragment_homework
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.view.View
-import android.widget.EditText
-import androidx.fragment.app.Fragment
+import android.widget.Toast
+import com.example.recycler_fragment_homework.chat.adapter.ChatsAdapter
+import com.example.recycler_fragment_homework.chat.model.ChatModel
 import com.example.recycler_fragment_homework.databinding.ActivityMainBinding
-import com.example.recycler_fragment_homework.profile.ProfileFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,12 +16,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
-//    private fun replaceFragment(fragment: Fragment) {
-//        val fragmentManager = supportFragmentManager
-//        val fragmentTransaction = fragmentManager.beginTransaction()
-//        fragmentTransaction.replace(R.id.chats_fragment_container, fragment)
-//        fragmentTransaction.commit()
-//    }
 
 
 }

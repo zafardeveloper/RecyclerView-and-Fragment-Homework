@@ -18,7 +18,8 @@
             android:id="@+id/imageViewProfile"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/avatar" />
+            android:src="@drawable/avatar"
+            android:contentDescription="avatar"/>
 
     </androidx.cardview.widget.CardView>
 

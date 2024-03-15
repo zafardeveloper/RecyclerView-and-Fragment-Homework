@@ -9,12 +9,13 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recycler_fragment_homework.R
+import com.example.recycler_fragment_homework.chat.ChatFragment
 import com.example.recycler_fragment_homework.chat.model.ChatModel
 
 
 
 
-    class ChatsAdapter : RecyclerView.Adapter<ChatsAdapter.ViewHolder>() {
+    class ChatsAdapter (val listener: Listener) : RecyclerView.Adapter<ChatsAdapter.ViewHolder>() {
 
         private val items = ArrayList<ChatModel>()
 
@@ -25,16 +26,21 @@ import com.example.recycler_fragment_homework.chat.model.ChatModel
             notifyDataSetChanged()
         }
 
+
         class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
             private val titleTextView = itemView.findViewById<TextView>(R.id.titleTvChat)
             private val lastMessageTextView = itemView.findViewById<TextView>(R.id.lastMessageChat)
             private val avatarImageView = itemView.findViewById<ImageView>(R.id.imageViewChat)
 
-            fun bind(item: ChatModel) {
+            fun bind(item: ChatModel, listener: Listener) {
                 titleTextView.text = item.chatNames
                 lastMessageTextView.text = item.chatLastMessage
                 avatarImageView.setImageDrawable(ContextCompat.getDrawable(itemView.context, item.chatAvatar))
+                itemView.setOnLongClickListener {
+                    listener.onClick(item)
+                    true
+                }
             }
         }
 
@@ -46,6 +52,12 @@ import com.example.recycler_fragment_homework.chat.model.ChatModel
 
         override fun getItemCount(): Int = items.size
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            holder.bind(items[position])
+            holder.bind(items[position], listener)
         }
+
+        interface Listener {
+            fun onClick(item: ChatModel)
+        }
+
+
     }
