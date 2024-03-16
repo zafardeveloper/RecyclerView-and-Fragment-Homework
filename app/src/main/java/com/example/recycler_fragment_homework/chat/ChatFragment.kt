@@ -2,9 +2,10 @@ package com.example.recycler_fragment_homework.chat
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recycler_fragment_homework.R
@@ -46,23 +47,32 @@ class ChatFragment :Fragment(R.layout.fragment_chat), ChatsAdapter.Listener {
     }
 
     override fun onClick(item: ChatModel) {
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.custom_alert_dialog, requireView() as ViewGroup, false)
+
+        val buttonYes = dialogView.findViewById<TextView>(R.id.buttonYes)
+        val buttonNo = dialogView.findViewById<TextView>(R.id.buttonNo)
+
         val alertDialog = AlertDialog.Builder(context)
-            .setTitle("Delete contact")
-            .setMessage("Are you sure you want to delete?")
-            .setIcon(R.drawable.delete_icon)
-            .setPositiveButton(android.R.string.yes) { dialog, which ->
+            .setCancelable(false)
+            .setView(dialogView)
+            .create()
+        alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+            buttonYes.setOnClickListener {
                 val position = data.indexOf(item)
                 deleteItem(position)
                 adapter.updateItems(data)
+                alertDialog.dismiss()
             }
-            .setNegativeButton(android.R.string.no) { dialog, which ->
-                dialog.dismiss()
+
+            buttonNo.setOnClickListener {
+                alertDialog.dismiss()
             }
-            .create()
-        alertDialog.show()
+
+            alertDialog.show()
     }
 
-    fun deleteItem(position: Int) {
+    private fun deleteItem(position: Int) {
         data.removeAt(position)
         adapter.notifyItemRemoved(position)
     }

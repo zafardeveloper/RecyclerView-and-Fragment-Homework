@@ -6,4 +6,6 @@
     </style>
 
     <style name="Theme.Recycler_Fragment_Practise" parent="Base.Theme.Recycler_Fragment_Practise" />
+
+
 </resources>

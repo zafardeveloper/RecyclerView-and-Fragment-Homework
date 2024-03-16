@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Recycler_Fragment_HomeWork</string>
     <string name="search_hint">Search</string>
+    <string name="del_conv">Delete conversation?</string>
+    <string name="delete_description">This conversation will be removed from all your synced devices. This action cannot be undone.</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
 </resources>
